@@ -1,0 +1,7 @@
+logs/
+*.err
+*.log
+*.out
+airflow.db
+.DS_Store
+*.pyc
