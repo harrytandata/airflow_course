@@ -43,7 +43,7 @@ def download_prices(*args, **context):
 
 def get_file_path(ticker):
     # NOT SAVE in distributed system.
-    return f'/Users/htan/workspace/harrytandata.com/airflow/logs/{ticker}.csv'
+    return f'logs/{ticker}.csv'
 
 def load_price_data(ticker):
     with open(get_file_path(ticker) , 'r') as reader:

@@ -5,3 +5,4 @@ logs/
 airflow.db
 .DS_Store
 *.pyc
+mysql/
