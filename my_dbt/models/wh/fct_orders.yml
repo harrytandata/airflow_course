@@ -1,0 +1,61 @@
+version: 2
+
+models:
+
+    - name: fct_orders
+      columns:
+          - name: order_key
+            description: unique key for each order from source system
+            tests:
+                - unique
+                - not_null
+
+          - name: order_date
+            description: date the order was placed
+            tests:
+                - not_null 
+
+          - name: customer_key
+            description: reference to `dim_customer`
+            tests:
+                - not_null                
+                - relationships:
+                    to: ref('dim_customer')
+                    field: customer_key
+                    
+          - name: order_status_code
+            tests:
+                - not_null
+                
+          - name: order_priority_code
+            tests:
+                - not_null
+                
+          - name: order_clerk_name
+            tests:
+                - not_null
+                
+          - name: shipping_priority
+            tests:
+                - not_null
+                                
+          - name: gross_item_sales_amount
+            description: pre-discount total of all ordered items
+            tests:
+                - not_null
+                
+          - name: item_discount_amount
+            description: discount amount for the order
+            tests:
+                - not_null
+                
+          - name: item_tax_amount
+            description: tax amount for the order
+            tests:
+                - not_null
+                
+          - name: net_item_sales_amount
+            description: amount of all items on the order after discounts and tax
+            tests:
+                - not_null
+                

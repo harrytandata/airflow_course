@@ -6,3 +6,24 @@ airflow.db
 .DS_Store
 *.pyc
 mysql/
+
+# local_dev
+logs/
+airflow-logs/
+webserver_config.py
+airflow-*.pid
+.dbt-venv/
+
+# dbt
+my_dbt/.user.yml
+my_dbt/logs/
+my_dbt/target/
+my_dbt/dbt_modules/
+my_dbt/my_snowflake_*.sh
+!my_dbt/snowflake_env.sh
+
+
+# Apple Finder :P
+*.DS_Store
+
+.env

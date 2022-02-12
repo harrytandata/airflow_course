@@ -1,0 +1,144 @@
+version: 2
+
+models:
+
+    - name: fct_orders_items
+      columns:
+          - name: order_item_key
+            description: unique key for each order item
+            tests:
+                - unique
+                - not_null
+          - name: order_key
+            description: unique key for each order from source system
+            tests:
+                - not_null
+
+          - name: order_date
+            description: date the order was placed
+            tests:
+                - not_null
+
+          - name: customer_key
+            description: reference to `dim_customer`
+            tests:
+                - not_null
+                - relationships:
+                    to: ref('dim_customer')
+                    field: customer_key
+
+          - name: order_status_code
+            description: order status
+            tests:
+                - not_null
+
+          - name: part_key
+            description: reference to `dim_part`
+            tests:
+                - not_null
+                - relationships:
+                    to: ref('dim_part')
+                    field: part_key
+
+          - name: supplier_key
+            description: reference to `dim_supplier`
+            tests:
+                - not_null
+                - relationships:
+                    to: ref('dim_supplier')
+                    field: supplier_key
+
+          - name: return_status_code
+            description: return status
+            tests:
+                - not_null
+
+          - name: order_line_number
+            description: order line number
+            tests:
+                - not_null
+
+          - name: order_line_status_code
+            description: order line status
+            tests:
+                - not_null
+
+          - name: ship_date
+            description: date the order was shipped
+            tests:
+                - not_null
+
+          - name: commit_date
+            description: date the order was committed
+            tests:
+                - not_null
+
+          - name: receipt_date
+            description: date the order was received
+            tests:
+                - not_null
+
+          - name: ship_mode_name
+            description: shipping mode
+            tests:
+                - not_null
+
+          - name: supplier_cost_amount
+            description: item cost from supplier
+            tests:
+                - not_null
+
+          - name: base_price
+            description: item price before discount 
+            tests:
+                - not_null
+                
+          - name: discount_percentage
+            description: discount percentage
+            tests:
+                - not_null
+
+          - name: discounted_price
+            description: item price after discount
+            tests:
+                - not_null
+
+          - name: tax_rate
+            description: tax rate
+            tests:
+                - not_null
+
+          - name: order_item_count
+            description: represents number of order items, 1 for every row 
+            tests:
+                - not_null
+
+          - name: quantity
+            description: item quantity ordered
+            tests:
+                - not_null
+
+          - name: gross_item_sales_amount
+            description: total amount before discounts
+            tests:
+                - not_null
+
+          - name: discounted_item_sales_amount
+            description: total amount after discounts
+            tests:
+                - not_null
+
+          - name: item_discount_amount
+            description: total discount
+            tests:
+                - not_null
+
+          - name: item_tax_amount
+            description: total tax charged
+            tests:
+                - not_null
+
+          - name: net_item_sales_amount                
+            description: total amount after discounts and taxes
+            tests:
+                - not_null
