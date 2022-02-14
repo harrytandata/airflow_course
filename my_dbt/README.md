@@ -21,11 +21,9 @@ Run `source my_snowflake_env.sh`.
 #### Developing a model
 ##### Add model schema and sql files
 Choose a model name and create a directory under `models/`.
-For example, `mkdir looker_optimization` will create a model called `looker_optimization`.
+For example, `mkdir wh` will create a model called `wh`.
 Then, create the necessary sql files under that directory.
-The `schema.yml` allows one to document the columns in markdown, column conditions, link to markdown pages and plenty more.
-But this file is NOT strictly necessary to create a model.  For an example, please look at
-`models/campaign_events/clicks/schema.yml`.  For more info on `schema.yml`, please see [here](https://docs.getdbt.com/reference/declaring-properties).
+For more info on `schema.yml`, please see [here](https://docs.getdbt.com/reference/declaring-properties).
 
 ##### Add model to `dbt_project.yml`
 In this file, the name of the model MUST be added under `my_dbt`.
@@ -42,17 +40,9 @@ Run `dbt run --profiles-dir . --models {insert_model_name_here}`.  If you would 
 within the model, you may further drill into it by running `dbt run --profiles-dir . --models {model_name}.{table or view name}`.
 The model entity path mirrors the directory path and instead of `/` separating each level, 
 
-For example, to run all campaign_event models, run `dbt run --profiles-dir . --models campaign_events`.
-To run all campaign_event open models, run `dbt run --profiles-dir . --models campaign_events.opens`.
-
-If a model is missing, you can list all models via the command `dbt ls`.
-
 #### Generate and view auto generated dbt documentation
 Run `dbt docs generate && dbt docs serve`.  This should generate the documentation and pop open the local
 browser and open generate the dbt docs.
 
 #### Running the model on a schedule
-Please follow the examples of `campaign_events_dbt.py` or `cloudflare_log_aggregation.py` to run your model
-on a regular basis.  If you **really** need the functionality to refresh the dbt model right after snowflake
-ingestion, follow the example in `dags/daily_append/em_log.py`, where the `DbtOperator` is chained into the upstream tasks.
-For example, the following line demonstrate what chaining an ingestion task into a dbt model run looks like.
+Please follow the example in `dags/tpch_dbt.py`, where the `DbtOperator` is chained into the upstream tasks.
